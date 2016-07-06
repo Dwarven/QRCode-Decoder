@@ -27,7 +27,7 @@
             [_label setText:result];
         }
     }];
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:NULL];
 }
 
 - (void)decodeQRCode{

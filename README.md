@@ -31,7 +31,7 @@ DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc] init]
    NSLog(@"%@", result);
 }];
 UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
-[self presentViewController:navVC animated:YES completion:nil];
+[self presentViewController:navVC animated:YES completion:NULL];
 
 ```
 **Enjoy**
