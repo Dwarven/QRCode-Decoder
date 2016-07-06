@@ -87,7 +87,6 @@ UIImagePickerControllerDelegate> {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     // Initially make the captureSession object nil.
     _captureSession = nil;
@@ -185,7 +184,6 @@ UIImagePickerControllerDelegate> {
     //create path
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     
-    // MARK: roundRectanglePath
     [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:CGRectMake(SCREEN_WIDTH / 6, SCREEN_HEIGHT / 2 - SCREEN_WIDTH / 3, SCREEN_WIDTH * 2 / 3, SCREEN_WIDTH * 2 / 3) cornerRadius:0] bezierPathByReversingPath]];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
