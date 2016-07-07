@@ -21,6 +21,7 @@ UIImagePickerControllerDelegate> {
     UIView *_viewPreview;
 }
 
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 @property (nonatomic) BOOL isReading;
@@ -32,7 +33,9 @@ UIImagePickerControllerDelegate> {
 - (void)dealloc{
     [self cleanNotifications];
     _observers = nil;
+    _viewPreview = nil;
     _completion = NULL;
+    self.imagePicker = nil;
     self.captureSession = nil;
     self.videoPreviewLayer = nil;
 }
@@ -51,6 +54,7 @@ UIImagePickerControllerDelegate> {
                             object:nil
                              queue:nil
                         usingBlock:^(NSNotification *note) {
+                            [SELF.imagePicker dismissViewControllerAnimated:NO completion:NULL];
                             [SELF cancel];
                         }];
     [_observers addObject:o];
@@ -77,16 +81,19 @@ UIImagePickerControllerDelegate> {
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self setupNotifications];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self cleanNotifications];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupNotifications];
+    
+    _imagePicker = [[UIImagePickerController alloc] init];
+    _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    _imagePicker.delegate = self;
     
     // Initially make the captureSession object nil.
     _captureSession = nil;
@@ -237,15 +244,11 @@ UIImagePickerControllerDelegate> {
 }
 
 - (void)cancel{
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self dismissViewControllerAnimated:NO completion:NULL];
 }
 
 - (void)pickImage{
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    imagePicker.delegate = self;
-    [self presentViewController:imagePicker animated:YES completion:^{
-    }];
+    [self presentViewController:_imagePicker animated:YES completion:NULL];
 }
 
 
