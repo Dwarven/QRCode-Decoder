@@ -19,6 +19,9 @@ UIImagePickerControllerDelegate> {
     void(^_completion)(BOOL, NSString *);
     NSMutableArray *_observers;
     UIView *_viewPreview;
+    UIImageView * _lineImageView;
+    CGRect _lineRect0;
+    CGRect _lineRect1;
 }
 
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
@@ -34,6 +37,7 @@ UIImagePickerControllerDelegate> {
     [self cleanNotifications];
     _observers = nil;
     _viewPreview = nil;
+    _lineImageView = nil;
     _completion = NULL;
     self.imagePicker = nil;
     self.captureSession = nil;
@@ -85,6 +89,11 @@ UIImagePickerControllerDelegate> {
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionRepeat animations:^{
+        [_lineImageView setFrame:_lineRect1];
+    } completion:^(BOOL finished) {
+        [_lineImageView setFrame:_lineRect0];
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -232,19 +241,12 @@ UIImagePickerControllerDelegate> {
                                                            constant:0.0]];
 
     
-    UIImageView * lineImageView = [[UIImageView alloc] init];
-    CGRect lineRect0 = CGRectMake(0, 0, SCREEN_WIDTH * 2 / 3, 20);
-    [lineImageView setFrame:lineRect0];
-    [lineImageView setImage:[UIImage imageNamed:@"img_animation_scan_line" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil]];
-    [imageView addSubview:lineImageView];
-    
-    CGRect lineRect1 = CGRectMake(0, SCREEN_WIDTH * 2 / 3 - 20, SCREEN_WIDTH * 2 / 3, 20);
-    
-    [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionRepeat animations:^{
-        [lineImageView setFrame:lineRect1];
-    } completion:^(BOOL finished) {
-        [lineImageView setFrame:lineRect0];
-    }];
+    _lineImageView = [[UIImageView alloc] init];
+    _lineRect0 = CGRectMake(0, 0, SCREEN_WIDTH * 2 / 3, 20);
+    _lineRect1 = CGRectMake(0, SCREEN_WIDTH * 2 / 3 - 20, SCREEN_WIDTH * 2 / 3, 20);
+    [_lineImageView setFrame:_lineRect0];
+    [_lineImageView setImage:[UIImage imageNamed:@"img_animation_scan_line" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil]];
+    [imageView addSubview:_lineImageView];
 }
 
 - (void)cancel{
