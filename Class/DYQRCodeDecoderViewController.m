@@ -16,7 +16,7 @@
 AVCaptureMetadataOutputObjectsDelegate,
 UINavigationControllerDelegate,
 UIImagePickerControllerDelegate> {
-    void(^_completion)(NSString *);
+    void(^_completion)(BOOL, NSString *);
     NSMutableArray *_observers;
     UIView *_viewPreview;
 }
@@ -75,8 +75,12 @@ UIImagePickerControllerDelegate> {
     }
 }
 
-- (void)setCompletion:(void (^)(NSString *))completion{
-    _completion = completion;
+- (id)initWithCompletion:(void (^)(BOOL, NSString *))completion{
+    self = [super init];
+    if (self) {
+        _completion = completion;
+    }
+    return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -263,7 +267,7 @@ UIImagePickerControllerDelegate> {
     CIQRCodeFeature *feature = [features firstObject];
     
     NSString *result = feature.messageString;
-    _completion(result);
+    _completion(result != nil, result);
     [self cancel];
 }
 
@@ -354,7 +358,7 @@ UIImagePickerControllerDelegate> {
                 if (![metadataObj stringValue] || [[metadataObj stringValue] length] == 0) {
                     NSLog(@"QRCode illegal");
                 } else {
-                    _completion([metadataObj stringValue]);
+                    _completion(YES, [metadataObj stringValue]);
                 }
             };
             

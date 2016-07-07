@@ -13,6 +13,6 @@
 @property (nonatomic, strong) NSString * leftBarButtonItemTitle;
 @property (nonatomic, strong) NSString * rightBarButtonItemTitle;//Album
 
-- (void)setCompletion:(void(^)(NSString * result))completion;
+- (id)initWithCompletion:(void(^)(BOOL succeeded, NSString * result))completion;
 
 @end

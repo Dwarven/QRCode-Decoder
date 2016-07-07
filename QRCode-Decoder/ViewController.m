@@ -21,10 +21,11 @@
 
 - (IBAction)scan:(id)sender {
     [_label setText:nil];
-    DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc] init];
-    [vc setCompletion:^(NSString *result) {
-        if ([result isKindOfClass:[NSString class]]) {
+    DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc] initWithCompletion:^(BOOL succeeded, NSString *result) {
+        if (succeeded) {
             [_label setText:result];
+        } else {
+            [_label setText:@"failed"];
         }
     }];
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:NULL];

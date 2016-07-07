@@ -26,9 +26,12 @@ pod 'DYQRCodeDecoder'
 ```obj-c
 #import "DYQRCodeDecoderViewController.h"
 
-DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc] init];
-[vc setCompletion:^(NSString *result) {
-   NSLog(@"%@", result);
+DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc] initWithCompletion:^(BOOL succeeded, NSString *result) {
+    if (succeeded) {
+        NSLog(@"%@", result);
+    } else {
+        NSLog(@"failed");
+    }
 }];
 UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
 [self presentViewController:navVC animated:YES completion:NULL];
