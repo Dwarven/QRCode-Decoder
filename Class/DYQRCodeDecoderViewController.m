@@ -24,6 +24,8 @@ UIImagePickerControllerDelegate> {
     CGRect _lineRect1;
 }
 
+@property (nonatomic, strong, readwrite) UIBarButtonItem * leftBarButtonItem;
+@property (nonatomic, strong, readwrite) UIBarButtonItem * rightBarButtonItem;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
@@ -42,6 +44,8 @@ UIImagePickerControllerDelegate> {
     self.imagePicker = nil;
     self.captureSession = nil;
     self.videoPreviewLayer = nil;
+    self.leftBarButtonItem = nil;
+    self.rightBarButtonItem = nil;
 }
 
 - (void)setupNotifications{
@@ -83,6 +87,15 @@ UIImagePickerControllerDelegate> {
     self = [super init];
     if (self) {
         _completion = completion;
+        _leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                              style:UIBarButtonItemStylePlain
+                                                             target:self
+                                                             action:@selector(cancel)];
+        
+        _rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Album"
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(pickImage)];
     }
     return self;
 }
@@ -114,26 +127,8 @@ UIImagePickerControllerDelegate> {
     // Set the initial value of the flag to NO.
     _isReading = NO;
     
-    UIBarButtonItem * leftBarButtonItem = nil;
-    if (_leftBarButtonItemTitle) {
-        leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_leftBarButtonItemTitle
-                                                             style:UIBarButtonItemStylePlain
-                                                            target:self
-                                                            action:@selector(cancel)];
-    } else {
-        leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                          target:self
-                                                                          action:@selector(cancel)];
-    }
-    
-    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
-    
-    UIBarButtonItem * rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_rightBarButtonItemTitle?:@"Album"
-                                                                            style:UIBarButtonItemStylePlain
-                                                                           target:self
-                                                                           action:@selector(pickImage)];
-    
-    [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
+    [self.navigationItem setLeftBarButtonItem:_leftBarButtonItem];
+    [self.navigationItem setRightBarButtonItem:_rightBarButtonItem];
     
     _viewPreview = [[UIView alloc] init];
     [self.view addSubview:_viewPreview];

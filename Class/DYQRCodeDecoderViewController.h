@@ -10,8 +10,8 @@
 
 @interface DYQRCodeDecoderViewController : UIViewController
 
-@property (nonatomic, strong) NSString * leftBarButtonItemTitle;
-@property (nonatomic, strong) NSString * rightBarButtonItemTitle;//Album
+@property (nonatomic, strong, readonly) UIBarButtonItem * leftBarButtonItem;
+@property (nonatomic, strong, readonly) UIBarButtonItem * rightBarButtonItem;
 
 - (id)initWithCompletion:(void(^)(BOOL succeeded, NSString * result))completion;
 
