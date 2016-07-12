@@ -33,6 +33,14 @@ DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc] initW
         NSLog(@"failed");
     }
 }];
+[vc setTitle:@"string"];
+
+[[vc leftBarButtonItem] setImage:[UIImage imageNamed:@"your image name"]];
+[[vc rightBarButtonItem] setImage:[UIImage imageNamed:@"your image name"]];
+//or
+[[vc leftBarButtonItem] setTitle:@"string"];
+[[vc leftBarButtonItem] setTitle:@"string"];
+
 UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
 [self presentViewController:navVC animated:YES completion:NULL];
 
