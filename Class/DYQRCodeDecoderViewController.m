@@ -86,6 +86,7 @@ UIImagePickerControllerDelegate> {
 - (id)initWithCompletion:(void (^)(BOOL, NSString *))completion{
     self = [super init];
     if (self) {
+        _needsScanAnnimation = YES;
         _completion = completion;
         _leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                               style:UIBarButtonItemStylePlain
@@ -102,11 +103,13 @@ UIImagePickerControllerDelegate> {
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionRepeat animations:^{
-        [_lineImageView setFrame:_lineRect1];
-    } completion:^(BOOL finished) {
-        [_lineImageView setFrame:_lineRect0];
-    }];
+    if (_needsScanAnnimation) {
+        [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionRepeat animations:^{
+            [_lineImageView setFrame:_lineRect1];
+        } completion:^(BOOL finished) {
+            [_lineImageView setFrame:_lineRect0];
+        }];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -161,87 +164,88 @@ UIImagePickerControllerDelegate> {
                                                           attribute:NSLayoutAttributeRight
                                                          multiplier:1.0
                                                            constant:0.0]];
-    
-    UIView * scanView = [[UIView alloc] init];
-    [scanView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.7]];
-    [self.view addSubview:scanView];
-    [scanView setTranslatesAutoresizingMaskIntoConstraints:NO];
-
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scanView
-                                                             attribute:NSLayoutAttributeTop
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:_viewPreview
-                                                             attribute:NSLayoutAttributeTop
-                                                            multiplier:1.0
-                                                              constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scanView
-                                                             attribute:NSLayoutAttributeBottom
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:_viewPreview
-                                                             attribute:NSLayoutAttributeBottom
-                                                            multiplier:1.0
-                                                              constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scanView
-                                                             attribute:NSLayoutAttributeLeft
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:_viewPreview
-                                                             attribute:NSLayoutAttributeLeft
-                                                            multiplier:1.0
-                                                              constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scanView
-                                                             attribute:NSLayoutAttributeRight
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:_viewPreview
-                                                             attribute:NSLayoutAttributeRight
-                                                            multiplier:1.0
-                                                           constant:0.0]];
-    
-    //create path
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    
-    [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:CGRectMake(SCREEN_WIDTH / 6, SCREEN_HEIGHT / 2 - SCREEN_WIDTH / 3, SCREEN_WIDTH * 2 / 3, SCREEN_WIDTH * 2 / 3) cornerRadius:0] bezierPathByReversingPath]];
-    
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    
-    shapeLayer.path = path.CGPath;
-    
-    [scanView.layer setMask:shapeLayer];
-    
-    UIImageView * imageView = [[UIImageView alloc] init];
-    [imageView setBackgroundColor:[UIColor clearColor]];
-    [imageView setImage:[UIImage imageNamed:@"img_animation_scan_pic" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil]];
-    [self.view addSubview:imageView];
-    [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:[imageView(==%f)]", SCREEN_WIDTH * 2 / 3]
-                                                                      options:0
-                                                                      metrics:0
-                                                                        views:@{@"imageView":imageView}]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:[imageView(==%f)]", SCREEN_WIDTH * 2 / 3]
-                                                                      options:0
-                                                                      metrics:0
-                                                                        views:@{@"imageView":imageView}]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:imageView
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:_viewPreview
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:imageView
-                                                          attribute:NSLayoutAttributeCenterY
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:_viewPreview
-                                                          attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-
-    
-    _lineImageView = [[UIImageView alloc] init];
-    _lineRect0 = CGRectMake(0, 0, SCREEN_WIDTH * 2 / 3, 20);
-    _lineRect1 = CGRectMake(0, SCREEN_WIDTH * 2 / 3 - 20, SCREEN_WIDTH * 2 / 3, 20);
-    [_lineImageView setFrame:_lineRect0];
-    [_lineImageView setImage:[UIImage imageNamed:@"img_animation_scan_line" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil]];
-    [imageView addSubview:_lineImageView];
+    if (_needsScanAnnimation) {
+        UIView * scanView = [[UIView alloc] init];
+        [scanView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.7]];
+        [self.view addSubview:scanView];
+        [scanView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scanView
+                                                              attribute:NSLayoutAttributeTop
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:_viewPreview
+                                                              attribute:NSLayoutAttributeTop
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scanView
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:_viewPreview
+                                                              attribute:NSLayoutAttributeBottom
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scanView
+                                                              attribute:NSLayoutAttributeLeft
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:_viewPreview
+                                                              attribute:NSLayoutAttributeLeft
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:scanView
+                                                              attribute:NSLayoutAttributeRight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:_viewPreview
+                                                              attribute:NSLayoutAttributeRight
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+        
+        //create path
+        UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        
+        [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:CGRectMake(SCREEN_WIDTH / 6, SCREEN_HEIGHT / 2 - SCREEN_WIDTH / 3, SCREEN_WIDTH * 2 / 3, SCREEN_WIDTH * 2 / 3) cornerRadius:0] bezierPathByReversingPath]];
+        
+        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        
+        shapeLayer.path = path.CGPath;
+        
+        [scanView.layer setMask:shapeLayer];
+        
+        UIImageView * imageView = [[UIImageView alloc] init];
+        [imageView setBackgroundColor:[UIColor clearColor]];
+        [imageView setImage:[UIImage imageNamed:@"img_animation_scan_pic" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil]];
+        [self.view addSubview:imageView];
+        [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:[imageView(==%f)]", SCREEN_WIDTH * 2 / 3]
+                                                                          options:0
+                                                                          metrics:0
+                                                                            views:@{@"imageView":imageView}]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:[imageView(==%f)]", SCREEN_WIDTH * 2 / 3]
+                                                                          options:0
+                                                                          metrics:0
+                                                                            views:@{@"imageView":imageView}]];
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:imageView
+                                                              attribute:NSLayoutAttributeCenterX
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:_viewPreview
+                                                              attribute:NSLayoutAttributeCenterX
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:imageView
+                                                              attribute:NSLayoutAttributeCenterY
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:_viewPreview
+                                                              attribute:NSLayoutAttributeCenterY
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+        
+        
+        _lineImageView = [[UIImageView alloc] init];
+        _lineRect0 = CGRectMake(0, 0, SCREEN_WIDTH * 2 / 3, 20);
+        _lineRect1 = CGRectMake(0, SCREEN_WIDTH * 2 / 3 - 20, SCREEN_WIDTH * 2 / 3, 20);
+        [_lineImageView setFrame:_lineRect0];
+        [_lineImageView setImage:[UIImage imageNamed:@"img_animation_scan_line" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil]];
+        [imageView addSubview:_lineImageView];
+    }
 }
 
 - (void)cancel{

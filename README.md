@@ -34,6 +34,7 @@ DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc] initW
     }
 }];
 [vc setTitle:@"string"];
+[vc setNeedsScanAnnimation:YES or NO];
 
 [[vc leftBarButtonItem] setImage:[UIImage imageNamed:@"your image name"]];
 [[vc rightBarButtonItem] setImage:[UIImage imageNamed:@"your image name"]];
