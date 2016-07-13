@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF0366C31D360EF2009B1D60 /* DYQRCodeDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = DF0366C21D360EF2009B1D60 /* DYQRCodeDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF0366C71D360EF2009B1D60 /* DYQRCodeDecoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0366C01D360EF2009B1D60 /* DYQRCodeDecoder.framework */; };
+		DF0366C81D360EF2009B1D60 /* DYQRCodeDecoder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DF0366C01D360EF2009B1D60 /* DYQRCodeDecoder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DF0366CD1D360F47009B1D60 /* DYQRCodeDecoderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DF4778C41D2B809A009DB4D8 /* DYQRCodeDecoderViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF0366CE1D360F4E009B1D60 /* DYQRCodeDecoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4778C51D2B809A009DB4D8 /* DYQRCodeDecoderViewController.m */; };
+		DF0366CF1D360F52009B1D60 /* img_animation_scan_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = DF77FF801D2CF67000E00B52 /* img_animation_scan_pic.png */; };
+		DF0366D01D360F55009B1D60 /* img_animation_scan_line.png in Resources */ = {isa = PBXBuildFile; fileRef = DF77FF811D2CF67000E00B52 /* img_animation_scan_line.png */; };
 		DF4778C61D2B809A009DB4D8 /* DYQRCodeDecoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4778C51D2B809A009DB4D8 /* DYQRCodeDecoderViewController.m */; };
 		DF77FF821D2CF67000E00B52 /* img_animation_scan_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = DF77FF801D2CF67000E00B52 /* img_animation_scan_pic.png */; };
 		DF77FF831D2CF67000E00B52 /* img_animation_scan_line.png in Resources */ = {isa = PBXBuildFile; fileRef = DF77FF811D2CF67000E00B52 /* img_animation_scan_line.png */; };
@@ -20,6 +27,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		DF0366C51D360EF2009B1D60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DFBE467A1D017D2800D3BB92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF0366BF1D360EF2009B1D60;
+			remoteInfo = DYQRCodeDecoder;
+		};
 		DFBE469C1D017D2800D3BB92 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DFBE467A1D017D2800D3BB92 /* Project object */;
@@ -36,7 +50,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DF0366CC1D360EF2009B1D60 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DF0366C81D360EF2009B1D60 /* DYQRCodeDecoder.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		DF0366C01D360EF2009B1D60 /* DYQRCodeDecoder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DYQRCodeDecoder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF0366C21D360EF2009B1D60 /* DYQRCodeDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYQRCodeDecoder.h; sourceTree = "<group>"; };
+		DF0366C41D360EF2009B1D60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF4778C41D2B809A009DB4D8 /* DYQRCodeDecoderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYQRCodeDecoderViewController.h; sourceTree = "<group>"; };
 		DF4778C51D2B809A009DB4D8 /* DYQRCodeDecoderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQRCodeDecoderViewController.m; sourceTree = "<group>"; };
 		DF77FF801D2CF67000E00B52 /* img_animation_scan_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_animation_scan_pic.png; sourceTree = "<group>"; };
@@ -59,10 +90,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DF0366BC1D360EF2009B1D60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DFBE467F1D017D2800D3BB92 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF0366C71D360EF2009B1D60 /* DYQRCodeDecoder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +122,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF0366C11D360EF2009B1D60 /* DYQRCodeDecoder */ = {
+			isa = PBXGroup;
+			children = (
+				DF0366C21D360EF2009B1D60 /* DYQRCodeDecoder.h */,
+				DF0366C41D360EF2009B1D60 /* Info.plist */,
+			);
+			path = DYQRCodeDecoder;
+			sourceTree = "<group>";
+		};
 		DF4778C31D2B7FAC009DB4D8 /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +149,7 @@
 				DFBE46841D017D2800D3BB92 /* QRCode-Decoder */,
 				DFBE469E1D017D2800D3BB92 /* QRCode-DecoderTests */,
 				DFBE46A91D017D2800D3BB92 /* QRCode-DecoderUITests */,
+				DF0366C11D360EF2009B1D60 /* DYQRCodeDecoder */,
 				DFBE46831D017D2800D3BB92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,6 +160,7 @@
 				DFBE46821D017D2800D3BB92 /* QRCode-Decoder.app */,
 				DFBE469B1D017D2800D3BB92 /* QRCode-DecoderTests.xctest */,
 				DFBE46A61D017D2800D3BB92 /* QRCode-DecoderUITests.xctest */,
+				DF0366C01D360EF2009B1D60 /* DYQRCodeDecoder.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,7 +208,37 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		DF0366BD1D360EF2009B1D60 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF0366C31D360EF2009B1D60 /* DYQRCodeDecoder.h in Headers */,
+				DF0366CD1D360F47009B1D60 /* DYQRCodeDecoderViewController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		DF0366BF1D360EF2009B1D60 /* DYQRCodeDecoder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF0366CB1D360EF2009B1D60 /* Build configuration list for PBXNativeTarget "DYQRCodeDecoder" */;
+			buildPhases = (
+				DF0366BB1D360EF2009B1D60 /* Sources */,
+				DF0366BC1D360EF2009B1D60 /* Frameworks */,
+				DF0366BD1D360EF2009B1D60 /* Headers */,
+				DF0366BE1D360EF2009B1D60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DYQRCodeDecoder;
+			productName = DYQRCodeDecoder;
+			productReference = DF0366C01D360EF2009B1D60 /* DYQRCodeDecoder.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		DFBE46811D017D2800D3BB92 /* QRCode-Decoder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFBE46AF1D017D2800D3BB92 /* Build configuration list for PBXNativeTarget "QRCode-Decoder" */;
@@ -166,10 +246,12 @@
 				DFBE467E1D017D2800D3BB92 /* Sources */,
 				DFBE467F1D017D2800D3BB92 /* Frameworks */,
 				DFBE46801D017D2800D3BB92 /* Resources */,
+				DF0366CC1D360EF2009B1D60 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DF0366C61D360EF2009B1D60 /* PBXTargetDependency */,
 			);
 			name = "QRCode-Decoder";
 			productName = "QRCode-Decoder";
@@ -221,6 +303,9 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Dwarven;
 				TargetAttributes = {
+					DF0366BF1D360EF2009B1D60 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					DFBE46811D017D2800D3BB92 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -250,11 +335,21 @@
 				DFBE46811D017D2800D3BB92 /* QRCode-Decoder */,
 				DFBE469A1D017D2800D3BB92 /* QRCode-DecoderTests */,
 				DFBE46A51D017D2800D3BB92 /* QRCode-DecoderUITests */,
+				DF0366BF1D360EF2009B1D60 /* DYQRCodeDecoder */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DF0366BE1D360EF2009B1D60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF0366CF1D360F52009B1D60 /* img_animation_scan_pic.png in Resources */,
+				DF0366D01D360F55009B1D60 /* img_animation_scan_line.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DFBE46801D017D2800D3BB92 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -283,6 +378,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DF0366BB1D360EF2009B1D60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF0366CE1D360F4E009B1D60 /* DYQRCodeDecoderViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DFBE467E1D017D2800D3BB92 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,6 +416,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DF0366C61D360EF2009B1D60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF0366BF1D360EF2009B1D60 /* DYQRCodeDecoder */;
+			targetProxy = DF0366C51D360EF2009B1D60 /* PBXContainerItemProxy */;
+		};
 		DFBE469D1D017D2800D3BB92 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DFBE46811D017D2800D3BB92 /* QRCode-Decoder */;
@@ -337,6 +445,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DF0366C91D360EF2009B1D60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DYQRCodeDecoder/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Dwarven.DYQRCodeDecoder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DF0366CA1D360EF2009B1D60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DYQRCodeDecoder/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Dwarven.DYQRCodeDecoder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		DFBE46AD1D017D2800D3BB92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -494,6 +644,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DF0366CB1D360EF2009B1D60 /* Build configuration list for PBXNativeTarget "DYQRCodeDecoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF0366C91D360EF2009B1D60 /* Debug */,
+				DF0366CA1D360EF2009B1D60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		DFBE467D1D017D2800D3BB92 /* Build configuration list for PBXProject "QRCode-Decoder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

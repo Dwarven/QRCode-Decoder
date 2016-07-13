@@ -4,6 +4,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/DYQRCodeDecoder.svg)](http://cocoadocs.org/docsets/DYQRCodeDecoder)
 [![Twitter](https://img.shields.io/badge/twitter-@DwarvenYang-blue.svg)](http://twitter.com/DwarvenYang)
 [![License](https://img.shields.io/github/license/Dwarven/QRCode-Encoder.svg)](https://img.shields.io/github/license/Dwarven/QRCode-Encoder)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 An iOS QRCode Scanner and Decoder
 
