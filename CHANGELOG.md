@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [1.1.1](https://github.com/Dwarven/QRCode-Decoder/releases/tag/1.1.1) (2017/03/21)
+Released on Tuesday, Mar 21, 2017.
+
+#### Added
+* Code Optimization for Subclass
+
 ## [1.1.0](https://github.com/Dwarven/QRCode-Decoder/releases/tag/1.1.0) (2017/03/21)
 Released on Tuesday, Mar 21, 2017.
 
