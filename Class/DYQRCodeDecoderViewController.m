@@ -360,9 +360,8 @@ UIImagePickerControllerDelegate> {
             
             _isReading = NO;
             
-            [self cancel];
-            
             void(^block)() = ^(void) {
+                [self cancel];
                 if (![metadataObj stringValue] || [[metadataObj stringValue] length] == 0) {
                     NSLog(@"QRCode illegal");
                 } else {
