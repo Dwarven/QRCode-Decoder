@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "DYQRCodeDecoderViewController.h"
+#import <DYQRCodeDecoder/DYQRCodeDecoder.h>
 
 @interface ViewController ()
 

@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		DF0366C31D360EF2009B1D60 /* DYQRCodeDecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = DF0366C21D360EF2009B1D60 /* DYQRCodeDecoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DF0366C71D360EF2009B1D60 /* DYQRCodeDecoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0366C01D360EF2009B1D60 /* DYQRCodeDecoder.framework */; };
 		DF0366C81D360EF2009B1D60 /* DYQRCodeDecoder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DF0366C01D360EF2009B1D60 /* DYQRCodeDecoder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DF0366CD1D360F47009B1D60 /* DYQRCodeDecoderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DF4778C41D2B809A009DB4D8 /* DYQRCodeDecoderViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF0366CE1D360F4E009B1D60 /* DYQRCodeDecoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4778C51D2B809A009DB4D8 /* DYQRCodeDecoderViewController.m */; };
 		DF0366CF1D360F52009B1D60 /* img_animation_scan_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = DF77FF801D2CF67000E00B52 /* img_animation_scan_pic.png */; };
 		DF0366D01D360F55009B1D60 /* img_animation_scan_line.png in Resources */ = {isa = PBXBuildFile; fileRef = DF77FF811D2CF67000E00B52 /* img_animation_scan_line.png */; };
-		DF4778C61D2B809A009DB4D8 /* DYQRCodeDecoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4778C51D2B809A009DB4D8 /* DYQRCodeDecoderViewController.m */; };
 		DF77FF821D2CF67000E00B52 /* img_animation_scan_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = DF77FF801D2CF67000E00B52 /* img_animation_scan_pic.png */; };
 		DF77FF831D2CF67000E00B52 /* img_animation_scan_line.png in Resources */ = {isa = PBXBuildFile; fileRef = DF77FF811D2CF67000E00B52 /* img_animation_scan_line.png */; };
 		DFBE46871D017D2800D3BB92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFBE46861D017D2800D3BB92 /* main.m */; };
@@ -101,7 +99,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF0366C71D360EF2009B1D60 /* DYQRCodeDecoder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +297,7 @@
 		DFBE467A1D017D2800D3BB92 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Dwarven;
 				TargetAttributes = {
 					DF0366BF1D360EF2009B1D60 = {
@@ -308,6 +305,7 @@
 					};
 					DFBE46811D017D2800D3BB92 = {
 						CreatedOnToolsVersion = 7.3.1;
+						ProvisioningStyle = Manual;
 					};
 					DFBE469A1D017D2800D3BB92 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -392,7 +390,6 @@
 			files = (
 				DFBE468D1D017D2800D3BB92 /* ViewController.m in Sources */,
 				DFBE468A1D017D2800D3BB92 /* AppDelegate.m in Sources */,
-				DF4778C61D2B809A009DB4D8 /* DYQRCodeDecoderViewController.m in Sources */,
 				DFBE46871D017D2800D3BB92 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +445,7 @@
 		DF0366C91D360EF2009B1D60 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -469,6 +467,7 @@
 		DF0366CA1D360EF2009B1D60 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -501,8 +500,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -546,8 +547,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -576,6 +579,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "QRCode-Decoder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Dwarven.QRCode-Decoder";
@@ -588,6 +592,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "QRCode-Decoder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Dwarven.QRCode-Decoder";
@@ -651,6 +656,7 @@
 				DF0366CA1D360EF2009B1D60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DFBE467D1D017D2800D3BB92 /* Build configuration list for PBXProject "QRCode-Decoder" */ = {
 			isa = XCConfigurationList;
