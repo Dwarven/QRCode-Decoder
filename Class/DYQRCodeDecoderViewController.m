@@ -203,10 +203,12 @@ UIImagePickerControllerDelegate> {
                                                              multiplier:1.0
                                                                constant:0.0]];
         
+        CGFloat frameWidth = SCREEN_WIDTH * 2 / 3;
+        
         //create path
         UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         
-        [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:CGRectMake(SCREEN_WIDTH / 6, SCREEN_HEIGHT / 2 - SCREEN_WIDTH / 3, SCREEN_WIDTH * 2 / 3, SCREEN_WIDTH * 2 / 3) cornerRadius:0] bezierPathByReversingPath]];
+        [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:CGRectMake(SCREEN_WIDTH / 6, SCREEN_HEIGHT / 2 - SCREEN_WIDTH / 3, frameWidth, frameWidth) cornerRadius:0] bezierPathByReversingPath]];
         
         CAShapeLayer *shapeLayer = [CAShapeLayer layer];
         
@@ -219,11 +221,11 @@ UIImagePickerControllerDelegate> {
         [imageView setImage:_frameImage];
         [self.view addSubview:imageView];
         [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:[imageView(==%f)]", SCREEN_WIDTH * 2 / 3]
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:[imageView(==%f)]", frameWidth]
                                                                           options:0
                                                                           metrics:0
                                                                             views:@{@"imageView":imageView}]];
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:[imageView(==%f)]", SCREEN_WIDTH * 2 / 3]
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:[imageView(==%f)]", frameWidth]
                                                                           options:0
                                                                           metrics:0
                                                                             views:@{@"imageView":imageView}]];
@@ -244,8 +246,9 @@ UIImagePickerControllerDelegate> {
         
         
         _lineImageView = [[UIImageView alloc] init];
-        _lineRect0 = CGRectMake(0, 0, SCREEN_WIDTH * 2 / 3, 20);
-        _lineRect1 = CGRectMake(0, SCREEN_WIDTH * 2 / 3 - 20, SCREEN_WIDTH * 2 / 3, 20);
+        CGFloat lineHeight = frameWidth * _lineImage.size.height / _lineImage.size.width;
+        _lineRect0 = CGRectMake(0, 0, frameWidth, lineHeight);
+        _lineRect1 = CGRectMake(0, frameWidth - lineHeight, frameWidth, lineHeight);
         [_lineImageView setFrame:_lineRect0];
         [_lineImageView setImage:_lineImage];
         [imageView addSubview:_lineImageView];
