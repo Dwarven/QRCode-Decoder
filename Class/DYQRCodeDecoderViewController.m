@@ -46,6 +46,8 @@ UIImagePickerControllerDelegate> {
     self.videoPreviewLayer = nil;
     self.leftBarButtonItem = nil;
     self.rightBarButtonItem = nil;
+    self.frameImage = nil;
+    self.lineImage = nil;
 }
 
 - (void)setupNotifications{
@@ -88,6 +90,8 @@ UIImagePickerControllerDelegate> {
     if (self) {
         _needsScanAnnimation = YES;
         _completion = completion;
+        _frameImage = [UIImage imageNamed:@"img_animation_scan_pic" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil];
+        _lineImage = [UIImage imageNamed:@"img_animation_scan_line" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil];
         _leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                               style:UIBarButtonItemStylePlain
                                                              target:self
@@ -212,7 +216,7 @@ UIImagePickerControllerDelegate> {
         
         UIImageView * imageView = [[UIImageView alloc] init];
         [imageView setBackgroundColor:[UIColor clearColor]];
-        [imageView setImage:[UIImage imageNamed:@"img_animation_scan_pic" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil]];
+        [imageView setImage:_frameImage];
         [self.view addSubview:imageView];
         [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:[imageView(==%f)]", SCREEN_WIDTH * 2 / 3]
@@ -243,7 +247,7 @@ UIImagePickerControllerDelegate> {
         _lineRect0 = CGRectMake(0, 0, SCREEN_WIDTH * 2 / 3, 20);
         _lineRect1 = CGRectMake(0, SCREEN_WIDTH * 2 / 3 - 20, SCREEN_WIDTH * 2 / 3, 20);
         [_lineImageView setFrame:_lineRect0];
-        [_lineImageView setImage:[UIImage imageNamed:@"img_animation_scan_line" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil]];
+        [_lineImageView setImage:_lineImage];
         [imageView addSubview:_lineImageView];
     }
 }

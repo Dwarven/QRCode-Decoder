@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong, readonly) UIBarButtonItem * leftBarButtonItem;
 @property (nonatomic, strong, readonly) UIBarButtonItem * rightBarButtonItem;
+@property (nonatomic, strong) UIImage * frameImage;
+@property (nonatomic, strong) UIImage * lineImage;
 @property (nonatomic) BOOL needsScanAnnimation;
 
 - (id)initWithCompletion:(void(^)(BOOL succeeded, NSString * result))completion;
