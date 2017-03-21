@@ -18,4 +18,6 @@
 
 - (id)initWithCompletion:(void(^)(BOOL succeeded, NSString * result))completion;
 
+- (void)cancel;
+
 @end

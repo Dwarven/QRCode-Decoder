@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [1.0.3](https://github.com/Dwarven/QRCode-Decoder/releases/tag/1.0.3) (2017/03/21)
+Released on Tuesday, Mar 21, 2017.
+
+#### Added
+* now you can override `cancel` method for `dismiss` or `pop`
+
 ## [1.0.2](https://github.com/Dwarven/QRCode-Decoder/releases/tag/1.0.2) (2017/03/21)
 Released on Tuesday, Mar 21, 2017.
 

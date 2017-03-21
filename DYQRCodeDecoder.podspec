@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name                  = 'DYQRCodeDecoder'
-  s.version               = '1.0.2'
+  s.version               = '1.0.3'
   s.summary               = 'An iOS QRCode Scanner and Decoder.'
   s.homepage              = 'https://github.com/Dwarven/QRCode-Decoder'
   s.ios.deployment_target = '8.0'
