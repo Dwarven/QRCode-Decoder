@@ -77,14 +77,6 @@ UIImagePickerControllerDelegate> {
     [_observers removeAllObjects];
 }
 
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if (!_isReading) {
-        [self startReading];
-        _isReading = !_isReading;
-    }
-}
-
 - (id)initWithCompletion:(void (^)(BOOL, NSString *))completion{
     self = [super init];
     if (self) {
@@ -105,6 +97,11 @@ UIImagePickerControllerDelegate> {
     return self;
 }
 
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    [self startReading];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (_needsScanAnnimation) {
@@ -116,8 +113,14 @@ UIImagePickerControllerDelegate> {
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self startReading];
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [self stopReading];
 }
 
 - (void)viewDidLoad {
@@ -275,65 +278,84 @@ UIImagePickerControllerDelegate> {
     CIQRCodeFeature *feature = [features firstObject];
     
     NSString *result = feature.messageString;
-    _completion(result != nil, result);
+    if (_completion) {
+        _completion(result != nil, result);
+    }
+    [self dealWithResult:result];
     [self cancel];
+}
+
+- (void)start {
+    [self startReading];
+}
+
+- (void)stop {
+    [self stopReading];
+}
+
+- (void)dealWithResult:(NSString *)result {
+    
 }
 
 #pragma mark - Private method implementation
 
-- (BOOL)startReading {
-    NSError *error;
-    
-    // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
-    // as the media type parameter.
-    AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    
-    // Get an instance of the AVCaptureDeviceInput class using the previous device object.
-    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
-    
-    if (!input) {
-        // If any error occurs, simply log the description of it and don't continue any more.
-        NSLog(@"%@", [error localizedDescription]);
-        return NO;
+- (void)startReading {
+    if (!_isReading) {
+        NSError *error;
+        
+        // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
+        // as the media type parameter.
+        AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+        
+        // Get an instance of the AVCaptureDeviceInput class using the previous device object.
+        AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
+        
+        if (input) {
+            // Initialize the captureSession object.
+            _captureSession = [[AVCaptureSession alloc] init];
+            // Set the input device on the capture session.
+            [_captureSession addInput:input];
+            
+            
+            // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
+            AVCaptureMetadataOutput *captureMetadataOutput = [[AVCaptureMetadataOutput alloc] init];
+            [_captureSession addOutput:captureMetadataOutput];
+            
+            // Create a new serial dispatch queue.
+            dispatch_queue_t dispatchQueue;
+            dispatchQueue = dispatch_queue_create("myQueue", NULL);
+            [captureMetadataOutput setMetadataObjectsDelegate:self queue:dispatchQueue];
+            [captureMetadataOutput setMetadataObjectTypes:[NSArray arrayWithObject:AVMetadataObjectTypeQRCode]];
+            
+            // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
+            _videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
+            [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+            [_videoPreviewLayer setFrame:_viewPreview.layer.bounds];
+            [_viewPreview.layer addSublayer:_videoPreviewLayer];
+            
+            
+            // Start video capture.
+            [_captureSession startRunning];
+            _isReading = !_isReading;
+        } else {
+            // If any error occurs, simply log the description of it and don't continue any more.
+            NSLog(@"%@", [error localizedDescription]);
+            return;
+        }
     }
-    
-    // Initialize the captureSession object.
-    _captureSession = [[AVCaptureSession alloc] init];
-    // Set the input device on the capture session.
-    [_captureSession addInput:input];
-    
-    
-    // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
-    AVCaptureMetadataOutput *captureMetadataOutput = [[AVCaptureMetadataOutput alloc] init];
-    [_captureSession addOutput:captureMetadataOutput];
-    
-    // Create a new serial dispatch queue.
-    dispatch_queue_t dispatchQueue;
-    dispatchQueue = dispatch_queue_create("myQueue", NULL);
-    [captureMetadataOutput setMetadataObjectsDelegate:self queue:dispatchQueue];
-    [captureMetadataOutput setMetadataObjectTypes:[NSArray arrayWithObject:AVMetadataObjectTypeQRCode]];
-    
-    // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
-    _videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
-    [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    [_videoPreviewLayer setFrame:_viewPreview.layer.bounds];
-    [_viewPreview.layer addSublayer:_videoPreviewLayer];
-    
-    
-    // Start video capture.
-    [_captureSession startRunning];
-    
-    return YES;
 }
 
 
--(void)stopReading{
-    // Stop video capture and make the capture session object nil.
-    [_captureSession stopRunning];
-    _captureSession = nil;
-    
-    // Remove the video preview layer from the viewPreview view's layer.
-    [_videoPreviewLayer removeFromSuperlayer];
+- (void)stopReading {
+    if (_isReading) {
+        // Stop video capture and make the capture session object nil.
+        [_captureSession stopRunning];
+        _captureSession = nil;
+        
+        // Remove the video preview layer from the viewPreview view's layer.
+        [_videoPreviewLayer removeFromSuperlayer];
+        _isReading = !_isReading;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -353,19 +375,19 @@ UIImagePickerControllerDelegate> {
             // stop reading and change the bar button item's title and the flag's value.
             // Everything is done on the main thread.
             
-            //            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
-            
-            [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
-            //            [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"Start!" waitUntilDone:NO];
-            
-            _isReading = NO;
-            
             void(^block)() = ^(void) {
+                [self stopReading];
                 [self cancel];
                 if (![metadataObj stringValue] || [[metadataObj stringValue] length] == 0) {
-                    NSLog(@"QRCode illegal");
+                    if (_completion) {
+                        _completion(NO, nil);
+                    }
+                    [self dealWithResult:nil];
                 } else {
-                    _completion(YES, [metadataObj stringValue]);
+                    if (_completion) {
+                        _completion(YES, [metadataObj stringValue]);
+                    }
+                    [self dealWithResult:[metadataObj stringValue]];
                 }
             };
             

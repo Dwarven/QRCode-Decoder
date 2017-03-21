@@ -18,6 +18,11 @@
 
 - (id)initWithCompletion:(void(^)(BOOL succeeded, NSString * result))completion;
 
+#pragma mark - methods for subclass
+
+- (void)start;
+- (void)stop;
+- (void)dealWithResult:(NSString *)result;
 - (void)cancel;
 
 @end
