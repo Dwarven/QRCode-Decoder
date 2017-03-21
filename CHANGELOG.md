@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [1.0.2](https://github.com/Dwarven/QRCode-Decoder/releases/tag/1.0.2) (2017/03/21)
+Released on Tuesday, Mar 21, 2017.
+
+#### Added
+* remove libpng warning
+
 ## [1.0.1](https://github.com/Dwarven/QRCode-Decoder/releases/tag/1.0.1) (2017/03/21)
 Released on Tuesday, Mar 21, 2017.
 
