@@ -43,6 +43,9 @@ DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc] initW
 [[vc leftBarButtonItem] setTitle:@"string"];
 [[vc leftBarButtonItem] setTitle:@"string"];
 
+[vc setFrameImage:[UIImage imageNamed:@"your image name"]];
+[vc setLineImage:[UIImage imageNamed:@"your image name"]];
+
 UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
 [self presentViewController:navVC animated:YES completion:NULL];
 
