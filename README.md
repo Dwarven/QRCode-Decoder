@@ -43,6 +43,8 @@ DYQRCodeDecoderViewController *vc = [[DYQRCodeDecoderViewController alloc] initW
 [[vc leftBarButtonItem] setTitle:@"string"];
 [[vc leftBarButtonItem] setTitle:@"string"];
 
+[vc setNavigationBarTintColor:[UIColor lightGrayColor]];
+
 [vc setFrameImage:[UIImage imageNamed:@"your image name"]];
 [vc setLineImage:[UIImage imageNamed:@"your image name"]];
 
