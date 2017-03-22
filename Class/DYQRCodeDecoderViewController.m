@@ -48,6 +48,7 @@ UIImagePickerControllerDelegate> {
     self.rightBarButtonItem = nil;
     self.frameImage = nil;
     self.lineImage = nil;
+    self.navigationBarTintColor = nil;
 }
 
 - (void)setupNotifications{
@@ -130,6 +131,13 @@ UIImagePickerControllerDelegate> {
     _imagePicker = [[UIImagePickerController alloc] init];
     _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     _imagePicker.delegate = self;
+    
+    if (_navigationBarTintColor) {
+        if (self.navigationController) {
+            self.navigationController.navigationBar.tintColor = _navigationBarTintColor;
+        }
+        _imagePicker.navigationBar.tintColor =_navigationBarTintColor;
+    }
     
     // Initially make the captureSession object nil.
     _captureSession = nil;
