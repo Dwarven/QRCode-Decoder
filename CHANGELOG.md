@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [1.1.2](https://github.com/Dwarven/QRCode-Decoder/releases/tag/1.1.2) (2017/03/22)
+Released on Wednesday, Mar 22, 2017.
+
+#### Added
+* property: navigationBarTintColor
+
 ## [1.1.1](https://github.com/Dwarven/QRCode-Decoder/releases/tag/1.1.1) (2017/03/21)
 Released on Tuesday, Mar 21, 2017.
 
